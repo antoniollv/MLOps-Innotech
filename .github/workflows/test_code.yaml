@@ -5,7 +5,7 @@ on:
       - src/**
       - config/**
       - training/**
-      - application/**
+#      - application/**
       - .github/workflows/test_training.yaml
 jobs:
   test_model:
