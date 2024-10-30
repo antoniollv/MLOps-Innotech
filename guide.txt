@@ -18,7 +18,7 @@ creamos gitignore y añadimos .venv
      git add .
      git commit -m "first commit"
      git branch -M main
-     git remote add origin https://github.com/kirilmn13/MLOps-e2e.git
+     git remote add origin https://github.com/kirilmn13/MLOps-Innotech.git
      git push -u origin main
 
 --> remove folder from --> git git rm -r folder
@@ -26,6 +26,7 @@ creamos gitignore y añadimos .venv
 
 --> Nos vamos Dagshub y creamos repo a partir de Github, hay que dar permisos
     --> ya estaría todo sicronizado entre repos
+
 
 
 
@@ -43,7 +44,7 @@ creamos gitignore y añadimos .venv
 --> dvc init
 --> dentro de data creamos gitignore con las carpetas que tiene que gestionar DVC
 --> dvc remote add origin s3://dvc
---> dvc remote modify origin endpointurl https://dagshub.com/kirilmn13/MLOps-e2e.s3
+--> dvc remote modify origin endpointurl https://dagshub.com/kirilmn13/MLOps-Innotech.s3
 --> dvc remote modify origin --local access_key_id e90bb58aed2b444b24a588dc01e9240810700ac2
 --> dvc remote modify origin --local secret_access_key e90bb58aed2b444b24a588dc01e9240810700ac2
 --> dvc push -r origin

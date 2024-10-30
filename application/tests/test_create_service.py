@@ -9,3 +9,6 @@ def test_service():
     ).text
 
     assert prediction[0] in ['0', '1']
+
+
+
