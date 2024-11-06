@@ -8,6 +8,7 @@
 --> ./.venv/Scripts/activate
 ! Comprobar entorno activado
 
+
 ########## REPOS ###########
 --> Creamos Github REPO
 
@@ -35,6 +36,8 @@ creamos gitignore y añadimos .venv
 --> Copiamos requirements.txt
 --> pip install -r requirements.txt -U
 
+
+## una buena práctica sería aislar requierements para cada cosa
 # PUSH
 
 ########## CONFIG DVC ######
