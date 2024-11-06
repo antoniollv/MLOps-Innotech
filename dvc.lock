@@ -4,50 +4,50 @@ stages:
     cmd: python training/src/process.py
     deps:
     - path: config/main.yaml
-      md5: 5db6650005ebf1225920e1164c3d9d19
-      size: 716
+      md5: 99d98c7120d7f38a132252be97f374a1
+      size: 903
     - path: data/raw
-      md5: 4fab2c71b869451ea58f8c4aeb16b2b3.dir
+      md5: 8302775812651a1b3238247f2353f2df.dir
       size: 195247
-      nfiles: 2
+      nfiles: 1
     - path: training/src/process.py
-      md5: c4c1be8b0fbe8e3d8f082e8c184c6288
-      size: 1433
+      md5: 6d36fade2964da903cc02271aef1e17d
+      size: 1483
     outs:
     - path: data/processed
-      md5: 51b8b1094218074679391fd59a18ed6f.dir
-      size: 153771
-      nfiles: 5
+      md5: 431cea4c36b796cd8448cc63f0a075c4.dir
+      size: 163081
+      nfiles: 4
   train_model:
     cmd: python training/src/train_model.py
     deps:
     - path: config/main.yaml
-      md5: 5db6650005ebf1225920e1164c3d9d19
-      size: 716
+      md5: 99d98c7120d7f38a132252be97f374a1
+      size: 903
     - path: data/processed
-      md5: 51b8b1094218074679391fd59a18ed6f.dir
-      size: 153771
-      nfiles: 5
+      md5: 431cea4c36b796cd8448cc63f0a075c4.dir
+      size: 163081
+      nfiles: 4
     - path: training/src/train_model.py
-      md5: aed2ac144f5709275c27cce037908853
-      size: 3299
+      md5: 2d9d5b9890cba55042a7df115ba3760e
+      size: 3389
     outs:
     - path: models/xgboost
-      md5: b8ff23bbee1184ac2b1529b7cbfefc11
-      size: 22142
+      md5: 4f1bf947f65adb3e5cbc01716f0c0c9b
+      size: 21032
   evaluate_model:
     cmd: python training/src/evaluate_model.py
     deps:
     - path: config/main.yaml
-      md5: 5db6650005ebf1225920e1164c3d9d19
-      size: 716
+      md5: 99d98c7120d7f38a132252be97f374a1
+      size: 903
     - path: data/processed
-      md5: 51b8b1094218074679391fd59a18ed6f.dir
-      size: 153771
-      nfiles: 5
+      md5: 431cea4c36b796cd8448cc63f0a075c4.dir
+      size: 163081
+      nfiles: 4
     - path: models/xgboost
-      md5: b8ff23bbee1184ac2b1529b7cbfefc11
-      size: 22142
+      md5: 4f1bf947f65adb3e5cbc01716f0c0c9b
+      size: 21032
     - path: training/src/evaluate_model.py
-      md5: a0c3e0b0bb08f7208d8ff4e782a38058
-      size: 1957
+      md5: 8a9742eb80b987fd35a4093a3cbf7c46
+      size: 2317
