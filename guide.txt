@@ -156,3 +156,6 @@ git commit --amend -CHEAD
 
 git push
 # Push our rewritten, smaller commit
+
+
+http://127.0.0.1:8000/docs

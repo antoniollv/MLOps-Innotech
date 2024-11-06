@@ -1,10 +1,14 @@
-import bentoml
 import numpy as np
 import pandas as pd
-from bentoml.io import JSON, NumpyNdarray
 from hydra import compose, initialize
 from patsy import dmatrix
 from pydantic import BaseModel
+import hydra
+import joblib
+from hydra.utils import to_absolute_path as abspath
+from omegaconf import DictConfig
+import uvicorn
+from fastapi import FastAPI
 
 with initialize(version_base=None, config_path='../../config'):
     config = compose(config_name='main')
@@ -50,30 +54,39 @@ def transform_data(df: pd.DataFrame):
     dummy_X = rename_columns(dummy_X)
     return dummy_X.iloc[0, :].values.reshape(1, -1)
 
+def load_model(model_path: str):
+    return joblib.load(model_path)
+
+app = FastAPI()
+
+@app.get('/')
+def index():
+    return {'message': 'Employee satisfaction ML API'}
 
 
-
-model_ref = bentoml.xgboost.get('xgboost:latest')
-_model_runner = model_ref.to_runner()
-#model_runner.init_local()
-
-# Create service with the model
-service = bentoml.Service('predict_employee', runners=[_model_runner])
-
-
-# @service.api(input=JSON(pydantic_model=Employee), output=NumpyNdarray())
-# def predict(employee: Employee) -> np.ndarray:
-#     """Transform the data then make predictions"""
-#     df = pd.DataFrame(employee.dict(), index=[0])
-#     df = transform_data(df)
-#     result = service.run(df)[0]
-#     return np.array(result)
-
-
-@service.api(JSON(pydantic_model=Employee), output=NumpyNdarray())
-async def predict(employee: Employee) -> np.ndarray:
+@app.post('/employee/predict')
+def predict(employee: Employee):
     df = pd.DataFrame(employee.dict(), index=[0])
     df = transform_data(df)
-    results = await _model_runner.predict_proba.async_run(df)
+    model = load_model(abspath(config.model.path))
+    results = model.predict_proba(df)
     predictions = np.argmax(results, axis=1)  # 0 is not fraud, 1 is fraud
-    return np.array(results)
+    print(predictions)
+    return {
+        'prediction': int(predictions[0])
+    }
+
+
+if __name__ == "__main__":
+    employ = Employee()
+    uvicorn.run(app, host='127.0.0.1', port=8000)
+    
+
+    
+
+
+
+
+
+
+
