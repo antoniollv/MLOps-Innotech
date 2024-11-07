@@ -1,6 +1,6 @@
 #### Requisitos equipo
 === Python3.10
-=== Docker
+=== Docker Desktop
 === Git
 
 ########### ENV ############

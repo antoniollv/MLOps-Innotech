@@ -94,3 +94,4 @@ outputs
 /models
 /data
 venv
+.venv.zip
