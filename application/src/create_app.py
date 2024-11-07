@@ -37,7 +37,7 @@ def write_predictions(data: dict):
         data_json = json.dumps(data)
 
         prediction = requests.post(
-            'http://127.0.0.1:8000/employee/predict',
+            'http://0.0.0.0:5001/employee/predict',
             headers={'content-type': 'application/json'},
             data=data_json,
         ).text[0]

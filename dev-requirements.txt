@@ -1,3 +1,4 @@
+protobuf==3.20.*
 dagshub==0.1.8
 hydra-core==1.2.0
 hyperopt==0.2.7
@@ -16,6 +17,3 @@ pydantic==1.9.1
 pytest==7.1.2
 #bentoml==1.0.0a7
 deepchecks
-protobuf==3.20.*
-fsspec==2022.11.0
-dvc[s3]

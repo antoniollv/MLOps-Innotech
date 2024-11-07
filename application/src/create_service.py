@@ -10,6 +10,7 @@ from omegaconf import DictConfig
 import uvicorn
 from fastapi import FastAPI
 
+
 with initialize(version_base=None, config_path='../../config'):
     config = compose(config_name='main')
     FEATURES = config.process.features
@@ -79,7 +80,7 @@ def predict(employee: Employee):
 
 if __name__ == "__main__":
     employ = Employee()
-    uvicorn.run(app, host='127.0.0.1', port=8000)
+    uvicorn.run(app, host='0.0.0.0', port=5001)
     
 
     
