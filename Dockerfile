@@ -11,12 +11,12 @@ SHELL ["/bin/bash", "-c"]
 #RUN apt update && apt install -y liblapack3 libblas3 libpq-dev python-dev && apt -y clean
 WORKDIR /application
 
-COPY requirements.txt /application/requirements.txt
+COPY docker-requirements.txt /application/docker-requirements.txt
 
 #ADD .pypirc /home/.pypirc
 #ADD pip.conf /etc/pip.conf
-RUN pip3 install -U pip && pip3 install -r /application/requirements.txt
-RUN pip3 install "fastapi[standard]" streamlit
+RUN pip3 install -U pip && pip3 install -r /application/docker-requirements.txt
+RUN pip3 install "fastapi[standard]" streamlit altair==4.0 uvicorn
 # RUN apt-get update && \
 #     apt-get install -y --no-install-recommends \
 #         ca-certificates \
@@ -57,6 +57,7 @@ RUN useradd -ms /bin/bash appuser
 #COPY . /ai2o
 ADD ./ /application
 
+
 RUN ls -laRt /application
 RUN chmod a+rwx -R /application
 
@@ -67,13 +68,13 @@ ENV PYTHONPATH=/application
 # ENV CONFIG_FILE_NAME=/ai2o/data/cfg/configuration_docker.yaml
 
 WORKDIR /application
-
 RUN ls /application
 
-EXPOSE 8080/tcp
+EXPOSE 5001/tcp 
 
-#ENTRYPOINT ["streamlit", "run"]
+#ENTRYPOINT ["./application/entrypoint.sh"]
 #CMD ["/ai2o/interface/Instrucciones.py", "--server.headless", "true", "--server.fileWatcherType", "none", "--browser.gatherUsageStats", "false"]
-
-CMD ["fastapi", "run", "src/create_service.py", "--port", "8000" ; "streamlit", "run", "/application/src/create_app.py","--server.port=8080", "--server.enableWebsocketCompression=false","--server.enableCORS=false", "--server.headless=true" ]
-
+# "fastapi", "run", "src/create_service.py", "--port", "8000" ; 
+# "streamlit", "run", "/application/src/create_app.py" ,"--server.port=8080", "--server.enableWebsocketCompression=false","--server.enableCORS=false", "--server.headless=true" ;
+CMD ["fastapi", "run", "/application/application/src/create_service.py", "--port", "5001"]
+#CMD ["./entrypoint.sh"]
