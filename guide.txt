@@ -167,3 +167,10 @@ docker build -f Dockerfile.api -t app  .
 
 docker run  -p 5001:5001 app:latest 
 docker run  -p 8000:8000 ui:latest 
+
+
+clonar git
+vincular
+crear datos estructura y meter raw 
+procesar
+pushear
