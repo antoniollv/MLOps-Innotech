@@ -173,4 +173,8 @@ clonar git
 vincular
 crear datos estructura y meter raw 
 procesar
+
+dvc init
+
 pushear
+
