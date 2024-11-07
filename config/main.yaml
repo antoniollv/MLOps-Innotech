@@ -28,7 +28,7 @@ final:
 
 model:
   dir: models
-  name: xgboost.pkl
+  name: xgboost
   path: ${model.dir}/${model.name}
 
 
