@@ -65,16 +65,16 @@ def evaluate(config: DictConfig):
         X_test, y_test = load_data(config.processed)
 
         model = load_model(abspath(config.model.path))
-
+        logger.log_model(abspath(config.model.path))
         # Get predictions
         prediction = predict(model, X_test)
 
         # Get metrics
         f1 = f1_score(y_test, prediction)
-        print(f"F1 Score of this model is {f1}.")
+        print(f'F1 Score of this model is {f1}.')
 
         accuracy = accuracy_score(y_test, prediction)
-        print(f"Accuracy Score of this model is {accuracy}.")
+        print(f'Accuracy Score of this model is {accuracy}.')
 
         # Log metrics
         log_params(model, config.process.features)

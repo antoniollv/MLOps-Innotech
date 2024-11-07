@@ -17,3 +17,7 @@ class BaseLogger:
     def log_params(self, params: dict):
         mlflow.log_params(params)
         self.logger.log_hyperparams(params)
+
+    def log_model(self, model):
+        mlflow.log_artifact(model)
+
