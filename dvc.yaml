@@ -6,13 +6,13 @@ stages:
     - data/raw
     - training/src/process.py
     outs:
-    - data/processed:
+    - data/processed/:
         persist: true
   train_model:
     cmd: python training/src/train_model.py
     deps:
     - config/main.yaml
-    - data/processed
+    - data/processed/
     - training/src/train_model.py
     outs:
     - models/xgboost.pkl:
@@ -21,6 +21,6 @@ stages:
     cmd: python training/src/evaluate_model.py
     deps:
     - config/main.yaml
-    - data/processed
+    - data/processed/
     - models/xgboost.pkl
     - training/src/evaluate_model.py
