@@ -15,12 +15,12 @@ stages:
     - data/processed
     - training/src/train_model.py
     outs:
-    - models/xgboost:
+    - models/xgboost.pkl:
         persist: true
   evaluate_model:
     cmd: python training/src/evaluate_model.py
     deps:
     - config/main.yaml
     - data/processed
-    - models/xgboost
+    - models/xgboost.pkl
     - training/src/evaluate_model.py
