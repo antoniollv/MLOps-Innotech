@@ -92,4 +92,5 @@ target/
 # Hydra logs
 outputs
 /models
+/data
 venv
